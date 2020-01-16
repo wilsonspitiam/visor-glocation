@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,18 +9,51 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEUWWb4FkHWCnWqNj4dGAPCMxPPXFWFIE"></script>
 <body>
     <div class="container">
-        <div class="top-bar"></div>
-        <div class="left-bar"></div>
-        <div class="right-bar"></div>
-        <div class="menu-bar">
+        <div class="loader"></div>
+        <header class="top-bar"></header>
+        <section class="left-bar">
+            <div class="container-left-bar">
+                <div class="info-left">
+                    <label for="listaMpios">Seleccione Municipio</label>
+                    <select name="listaMpios" id="listaMpios">
+                        <option value="66001">Pereira</option>
+                        <option value="68406">Lebrija</option>
+                    </select>
+                </div>                
+                <div class="type-layer-area">
+                    <input type="radio" name="type-layer-area" id="type-layer-area-urbana" checked>Urbana
+                    <input type="radio" name="type-layer-area" id="type-layer-area-rural">Rural
+                </div>
+                <div class="select-layer">
+                    <input type="radio" name="type-layer" id="type-layer-manzana" checked>Manzanas
+                    <input type="radio" name="type-layer" id="type-layer-construccion">Construcciones
+                    <input type="radio" name="type-layer" id="type-layer-terreno">Terrenos
+                </div>
+            </div>
+        </section>
+        <section class="right-bar">
+            <div class="container-right-bar">
+                <div class="layer-base-info">
+                    <div class="layer-base-info-selection">
+                        <input type="radio" name="type-base-layer" id="type-google-rm" checked>Google Maps Calles
+                        <input type="radio" name="type-base-layer" id="type-google-st">Google Maps Satelite
+                        <input type="radio" name="type-base-layer" id="type-bing">Bing
+                        <input type="radio" name="type-base-layer" id="type-maxar-fb">Maxar
+                        <input type="radio" name="type-base-layer" id="type-osm">OSM
+                    </div>
+                </div>
+                <div class="layer-base-data">DATA</div>
+            </div>
+        </section>
+        <section class="menu-bar">
             <ul class="btn-bar-actions">
-                <li class="btn-actions"><i class="fas fa-check"></i></li>
-                <li class="btn-actions"></li>
-                <li class="btn-actions"></li>
-                <li class="btn-actions"></li>
-                <li class="btn-actions"></li>
+                <li class="btn-actions btn-zoom-in"><i class="fas fa-plus"></i></li>
+                <li class="btn-actions btn-zoom-out"><i class="fas fa-minus"></i></li>
+                <li class="btn-actions btn-location"><i class="fas fa-location-arrow"></i></li>
+                <li class="btn-actions btn-layer-base"><i class="fas fa-layer-group"></i></li>
+                <li class="btn-actions btn-layer-data"><i class="fas fa-draw-polygon"></i></li>
             </ul>
-        </div>
+        </section>
         <div id="map"></div>
     </div>
 </body>

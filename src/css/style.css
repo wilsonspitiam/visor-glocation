@@ -1,11 +1,100 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 html,
 body{
     height: 100%;
-    widows: 100%;
     margin: 0;
+    width: 100%;
+    overflow: hidden;
+}
+.container,
+.loader{
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+.loader{
+    background: #ffe4c8a8;
+    position: absolute;
+    z-index: 1000;
+    display: none;
+}
+.loader.active{
+    display: inherit;
+}
+.top-bar {
+    background: #0000007d;
+    height: 60px;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+}
+
+.menu-bar {
+    position: absolute;
+    z-index: 100;
+    right: 0;
+    top: 30%;
+}
+.left-bar {
+    background: white;
+    height: calc(100% - 60px);
+    left: 0px;
+    margin-top: 60px;
+    position: absolute;
+    width: 300px;
+    z-index: 100;
+}
+.right-bar {
+    background: white;
+    height: calc(100% - 60px);
+    margin-top: 60px;
+    right: -400px;
+    position: absolute;
+    transition: ease-in 1s;
+    width: 400px;
+    z-index: 100;
+}
+.right-bar.active{
+    right: 0px;
+}
+.layer-base-info,
+.layer-base-data{
+    display: none;
+}
+
+.layer-base-info.active,
+.layer-base-data.active{
+    display: inherit;
+}
+li.btn-actions {
+    list-style: none;
+    width: auto;
+    height: auto;
+    background: #0000007d;
+    color: white;
+    padding: 10px;
+    border-bottom: 1px solid #00000033;
+    cursor: pointer;
+}
+.btn-actions:first-child{
+    border-top-left-radius: 4px;;
+}
+.btn-actions:last-child{
+    border-bottom-left-radius: 4px;;
+}
+.btn-actions:hover{
+    background: #000000d9;
+}
+.btn-layer-base.active,
+.btn-layer-data.active{
+    background: #000000d9;
 }
 #map {
     height: 100%;  /* The height is 400 pixels */
     width: 100%;  /* The width is the width of the web page */
     position: absolute;
-   }
+}
