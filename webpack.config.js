@@ -27,6 +27,16 @@ module.exports = {
             'css-loader'
         ],
       },
+      {
+        test: /\.(jpe?g|png|gif|svg|ico)$/i,
+        use: [{
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+                outputPath: './images'
+            }
+        }]
+      },
     ],
   },
   devServer: {

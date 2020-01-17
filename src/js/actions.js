@@ -114,7 +114,24 @@ function baseMapSelected(){
     elementsArray.forEach((elem) => {
         elem.addEventListener("change", (d) =>{
             let elementSelected = getSelectedBase();
-            mapController.loadMaxar()
+
+            console.log(elementSelected)
+
+            if(elementSelected == "type-google-rm"){
+                mapController.loadGoogleRM()
+            }
+            else if(elementSelected == "type-google-st"){
+                mapController.loadGoogleST()
+            }
+            else if(elementSelected == "type-bing"){
+                mapController.loadBing()
+            }
+            else if(elementSelected == "type-maxar-fb"){
+                mapController.loadMaxar()
+            }
+            else if(elementSelected == "type-osm"){
+                mapController.loadOSM()
+            }
         })
     })
 }

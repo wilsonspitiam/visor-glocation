@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Visor</title>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico">
+    <title>GLocation Visor</title>
 </head>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEUWWb4FkHWCnWqNj4dGAPCMxPPXFWFIE"></script>
 <body>
     <div class="container">
-        <div class="loader"></div>
-        <header class="top-bar"></header>
+        <div class="loader">
+            <img class="loader__img" src="./images/loader.gif">
+        </div>
+        <header class="top-bar">
+            <img class="top-bar__logo" src="./images/header.png">
+            <div class="top-bar__title">
+                <h1>Geovisor</h1>
+            </div>
+        </header>
         <section class="left-bar">
-            <div class="container-left-bar">
+            <div class="left-bar__container">
                 <div class="info-left">
                     <label for="listaMpios">Seleccione Municipio</label>
                     <select name="listaMpios" id="listaMpios">
@@ -21,13 +29,25 @@
                     </select>
                 </div>                
                 <div class="type-layer-area">
-                    <input type="radio" name="type-layer-area" id="type-layer-area-urbana" checked>Urbana
-                    <input type="radio" name="type-layer-area" id="type-layer-area-rural">Rural
+                    <label>Seleccione Área</label>
+                    <div class="type-layer-option">
+                        <input type="radio" name="type-layer-area" id="type-layer-area-urbana" checked>&nbsp;Urbana
+                    </div>
+                    <div class="type-layer-option">
+                        <input type="radio" name="type-layer-area" id="type-layer-area-rural">&nbsp;Rural
+                    </div>
                 </div>
                 <div class="select-layer">
-                    <input type="radio" name="type-layer" id="type-layer-manzana" checked>Manzanas
-                    <input type="radio" name="type-layer" id="type-layer-construccion">Construcciones
-                    <input type="radio" name="type-layer" id="type-layer-terreno">Terrenos
+                    <label>Seleccione Tipo</label>
+                    <div class="type-layer-option">
+                        <input type="radio" name="type-layer" id="type-layer-manzana" checked>&nbsp;Manzanas
+                    </div>
+                    <div class="type-layer-option">
+                        <input type="radio" name="type-layer" id="type-layer-construccion">&nbsp;Construcciones
+                    </div>
+                    <div class="type-layer-option">
+                        <input type="radio" name="type-layer" id="type-layer-terreno">&nbsp;Terrenos
+                    </div>
                 </div>
             </div>
         </section>
@@ -35,11 +55,22 @@
             <div class="container-right-bar">
                 <div class="layer-base-info">
                     <div class="layer-base-info-selection">
-                        <input type="radio" name="type-base-layer" id="type-google-rm" checked>Google Maps Calles
-                        <input type="radio" name="type-base-layer" id="type-google-st">Google Maps Satelite
-                        <input type="radio" name="type-base-layer" id="type-bing">Bing
-                        <input type="radio" name="type-base-layer" id="type-maxar-fb">Maxar
-                        <input type="radio" name="type-base-layer" id="type-osm">OSM
+                        <label>Mapa Base</label>
+                        <div class="type-layer-option">
+                            <input type="radio" name="type-base-layer" id="type-google-rm" checked>&nbsp;Google Maps Calles
+                        </div>
+                        <div class="type-layer-option">
+                            <input type="radio" name="type-base-layer" id="type-google-st">&nbsp;Google Maps Satelite
+                        </div>
+                        <div class="type-layer-option">
+                            <input type="radio" name="type-base-layer" id="type-bing">&nbsp;Bing
+                        </div>
+                        <div class="type-layer-option">
+                            <input type="radio" name="type-base-layer" id="type-maxar-fb">&nbsp;Maxar
+                        </div>
+                        <div class="type-layer-option">
+                            <input type="radio" name="type-base-layer" id="type-osm">&nbsp;OSM
+                        </div>
                     </div>
                 </div>
                 <div class="layer-base-data">DATA</div>
@@ -55,6 +86,9 @@
             </ul>
         </section>
         <div id="map"></div>
+        <!-- <footer class="down-bar">
+            <img class="down-bar__logo" src="./images/logo.png">
+        </footer> -->
     </div>
 </body>
 </html>

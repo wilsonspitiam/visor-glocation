@@ -70,15 +70,14 @@ export function init(){
     })
 }
 
-
 export function loadMaxar(){
     var TILE_URL = 'https://www.facebook.com/maps/ml_roads?theme=ml_road_vector&collaborator=fbid&token=ASZUVdYpCkd3M6ZrzjXdQzHulqRMnxdlkeBJWEKOeTUoY_Gwm9fuEd2YObLrClgDB_xfavizBsh0oDfTWTF7Zb4C&hash=ASYM8LPNy8k1XoJiI7A&result_type=satellite_raster_tile&materialize=true&x={x}&y={y}&z={z}';
 
     // Name the layer anything you like.
-    var layerID = 'my_custom_layer';
+    var layerID = 'Maxar';
 
     // Create a new ImageMapType layer.
-    var layer = new google.maps.ImageMapType({
+    var layerMaxar = new google.maps.ImageMapType({
         name: layerID,
         getTileUrl: function(coord, zoom) {
             console.log(coord);
@@ -93,6 +92,90 @@ export function loadMaxar(){
         maxZoom: 18
     });
     
-    map.getMap().mapTypes.set('moon', layer);
-    map.getMap().setMapTypeId('moon');
+    map.getMap().mapTypes.set('Maxar', layerMaxar);
+    map.getMap().setMapTypeId('Maxar');
 }
+
+export function loadBing(){
+    var TILE_URL = 'https://ecn.t{switch:0,1,2,3}.tiles.virtualearth.net/tiles/a{u}.jpeg?g=587&mkt=en-gb&n=z';
+
+    // Name the layer anything you like.
+    var layerID = 'Bing';
+
+    // Create a new ImageMapType layer.
+    var layerBing = new google.maps.ImageMapType({
+        name: layerID,
+        getTileUrl: function(coord, zoom) {
+            var url = TILE_URL
+            .replace(/\{switch:([^}]+)\}/, function(s, r) {
+                var subdomains = r.split(',');
+                return subdomains[(coord.x + coord.y) % subdomains.length];
+            })
+            .replace('{u}', function() {
+                var u = '';
+                if(zoom > 0){
+                    for (var z = zoom; z > 0; z--) {
+                        var b = 0;
+                        var mask = 1 << (z - 1);
+                        if ((coord.x & mask) !== 0) b++;
+                        if ((coord.y & mask) !== 0) b += 2;
+                        u += b.toString();
+                    }
+                }
+                else{
+                    u = '132301231011023'
+                }
+                return u;
+            });
+            return url;
+        },
+        tileSize: new google.maps.Size(256, 256),
+        minZoom: 1,
+        maxZoom: 20
+    });
+
+    console.log(layerBing)
+    
+    map.getMap().mapTypes.set('Bing', layerBing);
+    map.getMap().setMapTypeId('Bing');
+}
+
+export function loadOSM(){
+    var TILE_URL = 'https://{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+    
+    // Name the layer anything you like.
+    var layerID = 'OSM';
+
+    // Create a new ImageMapType layer.
+    var layerOSM = new google.maps.ImageMapType({
+        name: layerID,
+        getTileUrl: function(coord, zoom) {
+            console.log(coord);
+            var url = TILE_URL
+            .replace('{x}', coord.x)
+            .replace('{y}', coord.y)
+            .replace('{z}', zoom)            
+            .replace(/\{switch:([^}]+)\}/, function(s, r) {
+                var subdomains = r.split(',');
+                return subdomains[(coord.x + coord.y) % subdomains.length];
+            })
+            return url;
+        },
+        tileSize: new google.maps.Size(256, 256),
+        minZoom: 1,
+        maxZoom: 20
+    });
+    
+    map.getMap().mapTypes.set('OSM', layerOSM);
+    map.getMap().setMapTypeId('OSM');
+}
+
+export function loadGoogleRM(){
+    map.getMap().setMapTypeId('roadmap');
+}
+
+export function loadGoogleST(){
+    map.getMap().setMapTypeId('satellite');
+}
+
+//https://ecn.t0.tiles.virtualearth.net/tiles/a1323012310103130.jpeg?g=587&mkt=en-gb&n=z
