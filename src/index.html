@@ -14,12 +14,20 @@
             <img class="loader__img" src="./images/loader.gif">
         </div>
         <header class="top-bar">
-            <img class="top-bar__logo" src="./images/header.png">
+            <div class="top-bar__btn">
+                <div class="arrow-left --active">
+                    <i class="fas fa-caret-square-left"></i>
+                </div>
+                <div class="arrow-right --inactive">
+                    <i class="fas fa-caret-square-right"></i>
+                </div>                
+            </div>
             <div class="top-bar__title">
                 <h1>Geovisor</h1>
             </div>
+            <img class="top-bar__logo" src="./images/header.png">
         </header>
-        <section class="left-bar">
+        <section class="left-bar active">
             <div class="left-bar__container">
                 <div class="info-left">
                     <label for="listaMpios">Seleccione Municipio</label>
@@ -55,7 +63,7 @@
             <div class="container-right-bar">
                 <div class="layer-base-info">
                     <div class="layer-base-info-selection">
-                        <label>Mapa Base</label>
+                        <label class="title-layer">Mapa Base</label>
                         <div class="type-layer-option">
                             <input type="radio" name="type-base-layer" id="type-google-rm" checked>&nbsp;Google Maps Calles
                         </div>
@@ -73,7 +81,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="layer-base-data">DATA</div>
+                <div class="layer-base-data">                    
+                    <label class="title-layer">Datos del Mapa</label>
+                    <div class="type-layer-option">
+                        <input type="checkbox" name="type-data" id="type-data" checked>&nbsp;Capa de Datos
+                    </div>
+                </div>
             </div>
         </section>
         <section class="menu-bar">

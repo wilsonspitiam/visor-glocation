@@ -6,6 +6,8 @@ export function init() {
     radioChanged()
     radioChangedArea()
     baseMapSelected()
+    activeLeftPanel()
+    dataSelected()
 }
 
 function changeSelect() {
@@ -133,6 +135,40 @@ function baseMapSelected(){
                 mapController.loadOSM()
             }
         })
+    })
+}
+
+function activeLeftPanel(){    
+    document.querySelector(".top-bar__btn").addEventListener("click", (d) =>{
+        if(document.querySelector(".left-bar").classList.contains("active")){
+            document.querySelector(".left-bar").classList.remove('active')
+
+            document.querySelector(".arrow-left").classList.remove('--active')
+            document.querySelector(".arrow-left").classList.add('--inactive')
+
+            document.querySelector(".arrow-right").classList.add('--active')            
+            document.querySelector(".arrow-right").classList.remove('--inactive')
+        }
+        else{
+            document.querySelector(".left-bar").classList.add('active')
+
+            document.querySelector(".arrow-right").classList.remove('--active')
+            document.querySelector(".arrow-right").classList.add('--inactive')
+
+            document.querySelector(".arrow-left").classList.add('--active')
+            document.querySelector(".arrow-left").classList.remove('--inactive')
+        }
+    })
+}
+
+function dataSelected(){
+    document.querySelector("#type-data").addEventListener("change", (d) =>{
+        if(document.querySelector("#type-data").checked){
+            map.getMap().data.setMap(map.getMap())
+        }
+        else{
+            map.getMap().data.setMap(null)
+        }
     })
 }
 
