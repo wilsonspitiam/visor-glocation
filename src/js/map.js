@@ -1,12 +1,19 @@
 let map;
 let bounds;
 
-export function init(){
-  let center = {lat: 6.235359424848101, lng: -75.27566613217365};
+export function init(lng, lat, zoom){
+  let center, z;
+  center = {lat: 6.235359424848101, lng: -75.27566613217365};
+  z = 6;
+  if(lng != null & lat != null & zoom != null){
+    center = {lat: parseFloat(lat), lng: parseFloat(lng)};
+    z = parseFloat(zoom)
+  }
+  
   // The map, centered at Uluru
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 6, 
-    maxZoom: 18,
+    zoom: z, 
+    maxZoom: 20,
     center: center,    
     disableDefaultUI: true
   });

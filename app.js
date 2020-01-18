@@ -15,6 +15,13 @@ import favicon from './src/favicon.ico';
 library.add(fas, far, fab) 
 dom.watch()
 
-map.init()
+
+var url_string = window.location.href;
+var url = new URL(url_string);
+var x = url.searchParams.get("x");
+var y = url.searchParams.get("y");
+var z = url.searchParams.get("zoom");
+
+map.init(x,y,z)
 mapController.init()
 actions.init()
