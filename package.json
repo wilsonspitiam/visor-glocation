@@ -4,9 +4,9 @@
   "description": "Visor de glocation",
   "main": "app.js",
   "scripts": {
-    "dev": "webpack --watch -d",
-    "prod": "webpack -p",
-    "start": "webpack-dev-server"
+    "bundle": "webpack --config webpack.config.js",
+    "prestart": "npm run bundle",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/wilsonspitiam/visor-glocation#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "webpack": "^4.41.5"
   },
   "devDependencies": {

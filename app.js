@@ -1,27 +1,19 @@
-import * as map from './src/js/map'
-import * as mapController from './src/js/mapController'
-import * as actions from './src/js/actions'
-import { library, dom } from "@fortawesome/fontawesome-svg-core"
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { far } from '@fortawesome/free-regular-svg-icons'
-import { fab } from '@fortawesome/free-brands-svg-icons'
+'use strict';
 
-import homeStyle from './src/css/style.css';
-import logo from './src/img/logo.png';
-import header from './src/img/header.png';
-import loader from './src/img/loader.gif';
-import favicon from './src/favicon.ico';
+const express = require('express');
+const path = require('path');
 
-library.add(fas, far, fab) 
-dom.watch()
+const app = express();
 
+app.use(express.static(path.resolve(path.join(__dirname, '/dist'))));
 
-var url_string = window.location.href;
-var url = new URL(url_string);
-var x = url.searchParams.get("x");
-var y = url.searchParams.get("y");
-var z = url.searchParams.get("zoom");
+app.get('/', (req, res) => {
+  res.sendfile('index.html');
+});
 
-map.init(x,y,z)
-mapController.init()
-actions.init()
+const PORT = process.env.PORT || 9000;
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+  console.log('Press Ctrl+C to quit.');
+});
+

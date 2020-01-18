@@ -4,8 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+  mode: 'production',
 	context: __dirname,
-  entry: './app.js',
+  entry: './src/bundle.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.bundle.js'
@@ -38,10 +39,5 @@ module.exports = {
         }]
       },
     ],
-  },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000
   }
 };
