@@ -6,6 +6,7 @@
   "scripts": {
     "bundle": "webpack --config webpack.config.js",
     "prestart": "npm run bundle",
+    "dev": "webpack --watch",
     "start": "node app.js"
   },
   "repository": {
@@ -23,7 +24,10 @@
   },
   "homepage": "https://github.com/wilsonspitiam/visor-glocation#readme",
   "dependencies": {
+    "@google-cloud/bigquery": "^4.6.1",
     "express": "^4.17.1",
+    "google-auth-library": "^5.9.1",
+    "request": "^2.88.0",
     "webpack": "^4.41.5"
   },
   "devDependencies": {

@@ -2,12 +2,14 @@
 
 const express = require('express');
 const path = require('path');
+const bigquery = require('./src/js/bigquery');
 
 const app = express();
 
 app.use(express.static(path.resolve(path.join(__dirname, '/dist'))));
 
 app.get('/', (req, res) => {
+  bigquery.main();
   res.sendfile('index.html');
 });
 

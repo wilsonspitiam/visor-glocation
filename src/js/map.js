@@ -24,6 +24,8 @@ export function init(lng, lat, zoom){
     processPoints(e.feature.getGeometry(), bounds.extend, bounds);
     map.fitBounds(bounds);
   });
+
+  console.log(map)
 }
 
 export function drawPolygon(json){

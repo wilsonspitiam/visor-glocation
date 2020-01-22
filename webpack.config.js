@@ -4,12 +4,19 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
 	context: __dirname,
   entry: './src/bundle.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.bundle.js'
+  },
+  target: 'web',
+  node: {
+    child_process: 'empty',
+    tls: 'empty',
+    net: 'empty',
+    fs: 'empty',
   },
   plugins: [
     new HtmlWebpackPlugin({template: './src/index.html'}),
