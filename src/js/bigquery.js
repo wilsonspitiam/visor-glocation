@@ -1,7 +1,7 @@
-(function(exports){
+'use strict';
 
-    // your code goes here
-   exports.main = function(){
+module.exports = {
+    main: function (callback) {
         // [START bigquery_query]
         // [START bigquery_client_default_credentials]
         // Import the Google Cloud client library using default credentials
@@ -11,10 +11,20 @@
         async function query() {
         // Queries the U.S. given names dataset for the state of Texas.
 
-        const query = `SELECT name
-            FROM \`bigquery-public-data.usa_names.usa_1910_2013\`
-            WHERE state = 'TX'
-            LIMIT 100`;
+        const query = `SELECT
+        *,
+        SAFE.ST_GeogFromGeoJSON( geom ) AS g
+      FROM
+        \`glocalizacion.MGN2005.MGN_Manzana\`
+      WHERE
+        SUBSTR(CAST(SETR_CLSE_ AS STRING), 0, 2) = '68' AND  
+        ST_INTERSECTSBOX (SAFE.ST_GeogFromGeoJSON( geom ),
+          -73.21895042932569,
+          7.1143348398970545,
+          -73.21720162904798,
+          7.115219807292465) = TRUE
+      LIMIT
+        10`;
 
         // For all options, see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query
         const options = {
@@ -30,12 +40,12 @@
         // Wait for the query to finish
         const [rows] = await job.getQueryResults();
 
+        return callback(rows);
         // Print the results
-        console.log('Rows:');
-        rows.forEach(row => console.log(row));
+        // console.log('Rows:');
+        // rows.forEach(row => console.log(row));
         }
         // [END bigquery_query]
         query();
-    };
-
-})(typeof exports === 'undefined'? this['mymodule']={}: exports);
+    }
+}
