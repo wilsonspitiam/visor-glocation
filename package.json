@@ -25,7 +25,7 @@
   "homepage": "https://github.com/wilsonspitiam/visor-glocation#readme",
   "dependencies": {
     "@google-cloud/bigquery": "^4.6.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "google-auth-library": "^5.9.1",
     "request": "^2.88.0",
     "webpack": "^4.41.5"
